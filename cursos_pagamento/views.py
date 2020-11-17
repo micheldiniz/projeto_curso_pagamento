@@ -94,3 +94,23 @@ def cadastro_servidor(request):
             form = ServidorForms()
     else:
         return render(request, 'cadastros/servidor.html')
+
+def cadastro_curso(request):
+    if request.method == 'POST':
+        form = CursoForms(request.POST)
+        if form.is_valid():
+            nome = form.cleaned_data['nome']
+            responsavel = get_object_or_404(Usuario, pk=request.POST['responsavel'])
+            data_inicio = form.cleaned_data['data_inicio']
+            data_termino = form.cleaned_data['data_termino']
+            curso = Curso.objects.create(
+            nome=nome,
+            responsavel=responsavel,
+            data_inicio=data_inicio,
+            data_termino=data_termino)
+            curso.save()
+            return redirect('dashboard')
+        else:
+            form = CursoForms()
+    else:
+        return render(request, 'cadastro/cursos.html', {})

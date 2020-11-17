@@ -11,7 +11,7 @@
     <div class="row">
       <div class="col-lg-8 mx-auto">        
         <p class="lead">Cadastro curso:</p>
-        <form action="">
+        <form action="{% url 'cadastra_curso' %}" method="POST">
         {% csrf_token %}
         {% for field in curso_form%}
           <div class="form-group">
@@ -19,6 +19,7 @@
             {{field}}
           </div>
         {% endfor %}
+        <input type="submit" value="cadastrar">
         </form>
       </div>
     </div>

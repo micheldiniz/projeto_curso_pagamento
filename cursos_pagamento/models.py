@@ -33,7 +33,7 @@ class Curso(models.Model):
         (FINALIZADO,'finalizado')
     ]
     nome = models.CharField(max_length=200)
-    responsavel = models.OneToOneField(Usuario, on_delete=models.PROTECT, related_name='usuario_responsavel')
+    responsavel = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='usuario_responsavel')
     carga_horaria = models.CharField(max_length=15, null=True)
     data_inicio = models.DateField(null=True)
     data_termino = models.DateField(null=True)
