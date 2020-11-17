@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content%}
+
+{% include 'partials/_menu.html' %}
+
+{% include 'partials/_header.html' %}
+
+
+<section id="about">
+  <div class="container">
+    olá {{ user}}
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <h2>fluxo:</h2>
+        <img src="{% static 'img/projeto_pratica_02.png' %}" referrerpolicy="no-referrer" alt="projeto_pratica_02">
+        <p class="lead">Detalhes:</p>
+        <ul><li><span>Os usuários que acessam o sistema são: Gestor de Gestão e Pessoas, Responsável dos Cursos, Chefe de Setor (chefe do servidor) e o Servidor</span></li><li><span>O gestor de Gestão de Pessoas cadastra o setor informando o nome do setor e sua sigla</span></li><li><span>O gestor de Gestão de Pessoas cadastra o servidor informando um usuário, matrícula, setor e se ele é chefe desse setor. O login do servidor será o username informado no seu cadastro de usuário</span></li><li><span>Um setor só poderá ter um chefe ao mesmo tempo</span></li><li><span>O gestor de Gestão de Pessoas deverá ter um grupo específico para ter acesso total ao cadastro de usuário, setor, servidor, curso e informar cadastro em folha</span></li><li><span>O gestor de Gestão de Pessoas deverá cadastrar o curso informando seu nome, CH  e o servidor responsável pelo curso</span></li><li><span>O responsável pelo curso cadastra os servidores participantes</span></li><li><span>O chefe de setor (que também é servidor) deve marcar autorizar a participação do servidor no curso</span></li><li><span>O responsável pelo curso inicia o curso assim que todos os participantes forem autorizados</span></li><li><span>O gestor de Gestão de Pessoas e o responsável pelo curso podem excluir participantes sempre que o curso não tiver sido iniciado</span></li><li><span>O servidor cadastra o seu relatório de realização do curso (upload ou em texto mesmo)</span></li><li><span>O responsável pelo curso cadastra as horas trabalhadas de cada servidor e o sistema calcula e guarda no curso o pagamento total de cada servidor (horas trabalhdas X R$ 100,00) e o total pago pelo curso (soma dos pagamentos de todos os participantes)</span></li><li><span>O responsável pelo curso informa a realização do curso após todos os relatórios terem sido cadastrados e os pagamentos terem sido calculados</span></li><li><span>O gestor de Gestão de Pessoas irá informar o cadastro dos pagamentos em folha. Apenas para cursos finalizados</span></li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include 'partials/_footer.html' %}
+
+{% endblock%}

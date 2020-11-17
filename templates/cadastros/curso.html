@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content%}
+
+{% include 'partials/_menu.html' %}
+
+{% include 'partials/_header.html' %}
+
+<section id="about">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">        
+        <p class="lead">Cadastro curso:</p>
+        <form action="">
+        {% csrf_token %}
+        {% for field in curso_form%}
+          <div class="form-group">
+            <label for="{{field.id_for_label}}">{{field.label}}</label>  
+            {{field}}
+          </div>
+        {% endfor %}
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include 'partials/_footer.html' %}
+
+{% endblock%}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content%}
+
+{% include 'partials/_menu.html' %}
+
+{% include 'partials/_header.html' %}
+
+
+<section id="about">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <p class="lead">login:</p>
+        
+        <form action="{% url 'login' %}" method="POST">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-12 col-lg-12">
+            <label for="user"><b>Usuario</b></label>
+                <input type="text" id="user" class="form-control" name="user" placeholder="Entre com o usuário cadastrado">
+            </div>
+                <div class="col-12 col-lg-12">
+                <label for="senha"><b>Senha</b></label>
+                <input id="senha" type="password" class="form-control" name="senha" placeholder="Digite aqui sua senha">
+            </div>
+            <div class="col-12 col-lg-12">
+              <input type="submit" value="Acessar sua conta" class="btn btn-success">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include 'partials/_footer.html' %}
+
+{% endblock%}

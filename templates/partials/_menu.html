@@ -1,0 +1,44 @@
+{% load static %}
+<!-- Navigation -->
+<div class="dropdown">
+  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+    Dropdown button
+  </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="#">Link 1</a>
+    <a class="dropdown-item" href="#">Link 2</a>
+    <a class="dropdown-item" href="#">Link 3</a>
+  </div>
+</div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto" role="menu" aria-labelledby="dLabel">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="{% url 'index' %}">Início</a>
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="{% url 'logout_pagina' %}">Logout</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">cadastro</a>
+            <div class="dropdown-menu bg-dark">
+              <a class="nav-link js-scroll-trigger" href="{% url 'pagina_setor' %}">Setor</a>
+              <a class="nav-link js-scroll-trigger" href="{% url 'pagina_servidor' %}">Servidor</a>
+              <a class="nav-link js-scroll-trigger" href="{% url 'pagina_curso' %}">curso</a>
+            </div>
+          </li>
+          {% else%} 
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="{% url 'login_pagina' %}">Login</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>

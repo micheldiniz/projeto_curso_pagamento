@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content%}
+
+{% include 'partials/_menu.html' %}
+
+{% include 'partials/_header.html' %}
+
+<section id="about">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <p class="lead">Cadastro Setor:</p>
+        <form action="{% url 'cadastra_setor' %}" method="POST">
+        {% csrf_token %}
+        {% for field in setor_form %}
+          <div class="form-group">
+            <label for="{{field.id_for_label}}">{{field.label}}</label>
+            {{field}}
+          </div>
+        {% endfor %}
+        <input type="submit" value="Cadastrar" class="btn btn-success">
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include 'partials/_footer.html' %}
+
+{% endblock %}
