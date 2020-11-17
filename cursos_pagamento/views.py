@@ -72,3 +72,25 @@ def cadastro_setor(request):
         return redirect('dashboard')
     else:
         return render(request, 'cadastros/setor.html')
+
+def cadastro_servidor(request):
+    if request.method == 'POST':
+        form = ServidorForms(request.POST)
+        if form.is_valid():
+            nome = form.cleaned_data['nome']
+            matricula = form.cleaned_data['matricula']
+            setor = get_object_or_404(Setor, pk=request.POST['setor'])
+            login = form.cleaned_data['login']
+            is_chefe = form.cleaned_data['is_chefe']
+            servidor = Usuario.objects.create(
+            nome=nome,
+            matricula=matricula,
+            setor=setor,
+            login=login,
+            is_chefe=is_chefe)
+            servidor.save()
+            return redirect('dashboard')        
+        else:
+            form = ServidorForms()
+    else:
+        return render(request, 'cadastros/servidor.html')

@@ -9,6 +9,7 @@ class SetorForms(forms.ModelForm):
         fields = '__all__'
 
 class ServidorForms(forms.ModelForm):
+    is_chefe = forms.BooleanField()
     class Meta:
         model = Usuario
         fields = '__all__'

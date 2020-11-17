@@ -18,7 +18,6 @@ class Usuario(models.Model):
     setor = models.ForeignKey(Setor, on_delete=models.PROTECT)
     login = models.CharField(max_length=15)
     is_chefe = models.BooleanField(default=False, verbose_name='Chefe de setor?')
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.nome
@@ -38,7 +37,7 @@ class Curso(models.Model):
     carga_horaria = models.CharField(max_length=15, null=True)
     data_inicio = models.DateField(null=True)
     data_termino = models.DateField(null=True)
-    participante = models.ManyToManyField(Usuario, through='Atividade',null=True)
+    participante = models.ManyToManyField(Usuario, through='Atividade')
     has_started = models.BooleanField(default=False, verbose_name='curso iniciado')
     has_finished = models.BooleanField(default=False, verbose_name='curso finalizado')
     situacao_curso = models.CharField(max_length=20,choices=SITUACAO_CURSO,default=NOVO,)
