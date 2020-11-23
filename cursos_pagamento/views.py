@@ -65,13 +65,24 @@ def pagina_curso(request):
 
 def cadastro_setor(request):
     if request.method == 'POST':
-        nome = request.POST['nome']
-        sigla = request.POST['sigla']
-        setor = Setor.objects.create(nome=nome, sigla=sigla)
-        setor.save()
-        return redirect('dashboard')
+        form = SetorForms(request.POST)
+        if form.is_valid():
+            nome = form.cleaned_data['nome']
+            sigla = form.cleaned_data['sigla']
+            setor = Setor.objects.create(nome=nome, sigla=sigla)
+            setor.save()
+            setores = Setor.objects.all()
+            contexto = {'setores':setores}
+        return render(request, 'setores/visualiza.html', contexto)
     else:
         return render(request, 'cadastros/setor.html')
+
+def deleta_setor(request, setor_id):
+    obj = get_object_or_404(Setor, pk=setor_id)
+    obj.delete()
+    setores = Setor.objects.all()
+    contexto = {'setores': setores}
+    return render(request, 'setores/visualiza.html', contexto)
 
 def cadastro_servidor(request):
     if request.method == 'POST':
@@ -101,11 +112,13 @@ def cadastro_curso(request):
         if form.is_valid():
             nome = form.cleaned_data['nome']
             responsavel = get_object_or_404(Usuario, pk=request.POST['responsavel'])
+            carga_horaria = form.cleaned_data['carga_horaria']
             data_inicio = form.cleaned_data['data_inicio']
             data_termino = form.cleaned_data['data_termino']
             curso = Curso.objects.create(
             nome=nome,
             responsavel=responsavel,
+            carga_horaria=carga_horaria,
             data_inicio=data_inicio,
             data_termino=data_termino)
             curso.save()
@@ -113,4 +126,31 @@ def cadastro_curso(request):
         else:
             form = CursoForms()
     else:
-        return render(request, 'cadastro/cursos.html', {})
+        return render(request, 'cadastros/cursos.html')
+
+def visualiza_setores(request):
+    setores = Setor.objects.all()
+    contexto = {
+        'setores': setores
+        }
+    return render(request, 'setores/visualiza.html', context=contexto)
+
+
+def edita_setores(request, setor_id):
+    setor = get_object_or_404(Setor, pk=setor_id)
+    form = SetorForms(request.POST or None, instance=setor)
+    print('##################################################################################################################################################################################################')
+    print(form)
+    # if form.is_valid():
+    #     form.save()
+    #     return redirect('dashboard.html')    
+    return render(request, 'setores/atualiza.html', {'form':form})
+
+def atualiza_setores(request):
+    setor_id = request.POST['setor_id']
+    setor = get_object_or_404(Setor, pk=setor_id)
+    form = SetorForms(request.POST or None, instance=setor)
+    if form.is_valid():
+        form.save()
+        return redirect('dashboard.html')    
+    return render(request, 'setores/atualiza.html', {'form':form})

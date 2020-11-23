@@ -10,16 +10,16 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 mx-auto">
-        <p class="lead">Cadastrar Setor:</p>
-        <form action="{% url 'cadastra_setor' %}" method="POST">
+        <p class="lead">Atualiza Setor:</p>
+        <form action="{% url 'atualiza_setores' %}" method="POST">
         {% csrf_token %}
-        {% for field in setor_form %}
+        {% for field in form %}
           <div class="form-group">
             <label for="{{field.id_for_label}}">{{field.label}}</label>
             {{field}}
           </div>
         {% endfor %}
-        <input type="submit" value="Cadastrar" class="btn btn-success">
+        <input type="submit" value="Atualizar" class="btn btn-success">
         </form>
       </div>
     </div>

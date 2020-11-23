@@ -26,11 +26,27 @@
             <a class="nav-link js-scroll-trigger" href="{% url 'logout_pagina' %}">Logout</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">cadastro</a>
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Cadastrar</a>
             <div class="dropdown-menu bg-dark">
               <a class="nav-link js-scroll-trigger" href="{% url 'pagina_setor' %}">Setor</a>
               <a class="nav-link js-scroll-trigger" href="{% url 'pagina_servidor' %}">Servidor</a>
               <a class="nav-link js-scroll-trigger" href="{% url 'pagina_curso' %}">curso</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Visualizar</a>
+            <div class="dropdown-menu bg-dark">
+              <a class="nav-link js-scroll-trigger" href="{% url 'visualiza_setores' %}">Setor</a>
+              <a class="nav-link js-scroll-trigger" href="">Servidor</a>
+              <a class="nav-link js-scroll-trigger" href="">curso</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Curso</a>
+            <div class="dropdown-menu bg-dark">
+              <a class="nav-link js-scroll-trigger" href="{% url 'pagina_setor' %}">Validar participante</a>
+              <a class="nav-link js-scroll-trigger" href="{% url 'pagina_servidor' %}">Adicionar Participante</a>
+              <a class="nav-link js-scroll-trigger" href="{% url 'pagina_curso' %}">Relatório de Atividades</a>
             </div>
           </li>
           {% else%} 
