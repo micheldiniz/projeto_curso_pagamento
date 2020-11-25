@@ -7,7 +7,7 @@ class SetorForms(forms.ModelForm):
     class Meta:
         model = Setor
         fields = '__all__'
-        widgets = {'setor_id': forms.HiddenInput()}
+        widgets = {}
 
 class ServidorForms(forms.ModelForm):
     class Meta:

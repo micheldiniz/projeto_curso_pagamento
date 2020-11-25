@@ -11,15 +11,11 @@
     <div class="row">
       <div class="col-lg-8 mx-auto">
         <p class="lead">Atualiza Setor:</p>
-        <form action="{% url 'atualiza_setores' %}" method="POST">
-        {% csrf_token %}
-        {% for field in form %}
-          <div class="form-group">
-            <label for="{{field.id_for_label}}">{{field.label}}</label>
-            {{field}}
-          </div>
-        {% endfor %}
-        <input type="submit" value="Atualizar" class="btn btn-success">
+        <form action="{% url 'edita_setores' setor_id %}" method="POST">
+          <input type="hidden" name="setor_id" value="{{ setor.id }}">
+          {% csrf_token %}
+          {{ form }} 
+          <input type="submit" value="Atualizar" class="btn btn-success">
         </form>
       </div>
     </div>

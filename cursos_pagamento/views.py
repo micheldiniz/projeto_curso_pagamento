@@ -139,18 +139,10 @@ def visualiza_setores(request):
 def edita_setores(request, setor_id):
     setor = get_object_or_404(Setor, pk=setor_id)
     form = SetorForms(request.POST or None, instance=setor)
-    print('##################################################################################################################################################################################################')
-    print(form)
-    # if form.is_valid():
-    #     form.save()
-    #     return redirect('dashboard.html')    
-    return render(request, 'setores/atualiza.html', {'form':form})
-
-def atualiza_setores(request):
-    setor_id = request.POST['setor_id']
-    setor = get_object_or_404(Setor, pk=setor_id)
-    form = SetorForms(request.POST or None, instance=setor)
     if form.is_valid():
         form.save()
-        return redirect('dashboard.html')    
-    return render(request, 'setores/atualiza.html', {'form':form})
+        contexto = {'setores':Setor.objects.all()}
+        return render(request, 'setores/visualiza.html', contexto)
+    else:
+        contexto = {'form':form, 'setor_id':setor_id}
+        return render(request, 'setores/atualiza.html', contexto)

@@ -31,7 +31,6 @@ urlpatterns = [
     path('deleta_setor/<int:setor_id>', deleta_setor, name='deleta_setor'),
     path('setores', visualiza_setores, name='visualiza_setores'),   
     path('edita_setor/<int:setor_id>', edita_setores, name='edita_setores'),  
-    path('atualiza_setor/', atualiza_setores, name='atualiza_setores'),  
     path('dashboard', dashboard, name='dashboard'),
     path('pagina_setor', pagina_setor, name='pagina_setor'),
     path('pagina_servidor', pagina_servidor, name='pagina_servidor'),
