@@ -84,6 +84,13 @@ def deleta_setor(request, setor_id):
     contexto = {'setores': setores}
     return render(request, 'setores/visualiza.html', contexto)
 
+def deleta_curso(request, curso_id):
+    obj = get_object_or_404(Curso, pk=curso_id)
+    obj.delete()
+    cursos = Curso.objects.all()
+    contexto = {'cursos': cursos}
+    return render(request, 'cursos/visualiza.html', contexto)
+
 def cadastro_servidor(request):
     if request.method == 'POST':
         form = ServidorForms(request.POST)
@@ -136,6 +143,14 @@ def visualiza_setores(request):
     return render(request, 'setores/visualiza.html', context=contexto)
 
 
+def visualiza_cursos(request):
+    cursos = Curso.objects.all()
+    contexto = {
+        'cursos': cursos
+        }
+    return render(request, 'cursos/visualiza.html', context=contexto)
+
+
 def edita_setores(request, setor_id):
     setor = get_object_or_404(Setor, pk=setor_id)
     form = SetorForms(request.POST or None, instance=setor)
@@ -146,3 +161,14 @@ def edita_setores(request, setor_id):
     else:
         contexto = {'form':form, 'setor_id':setor_id}
         return render(request, 'setores/atualiza.html', contexto)
+
+def edita_cursos(request, curso_id):
+    curso = get_object_or_404(Curso, pk=curso_id)
+    form = CursoForms(request.POST or None, instance=curso)
+    if form.is_valid():
+        form.save()
+        contexto = {'cursos':Curso.objects.all()}
+        return render(request, 'cursos/visualiza.html', contexto)
+    else:
+        contexto = {'form':form, 'curso_id':curso_id}
+        return render(request, 'cursos/atualiza.html', contexto)

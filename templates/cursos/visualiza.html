@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content%}
+
+{% include 'partials/_menu.html' %}
+
+{% include 'partials/_header.html' %}
+
+<section id="about">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <h2>Cursos Cadastrados</h2>
+        <table class="table">
+          <caption>Cursos cadastrados no sistema</caption>
+          <tr>
+          <th scope="col">id</th>
+          <th scope="col">Nome do Curso</th>
+          <th scope="col">Responsável</th>
+          <th scope="col">Carga Horária</th>
+          <th scope="col">Data Início</th>
+          <th scope="col">Data Término</th>          
+          <th scope="col">Ações</th>
+          </tr>
+        {% for curso in cursos%}
+          <tr>  
+            <th scope="row">{{curso.id}}</th>
+            <td>{{curso.nome}}</td>
+            <td>{{curso.responsavel}}</td>
+            <td>{{curso.carga_horaria}}</td>
+            <td>{{curso.data_inicio}}</td>
+            <td>{{curso.data_termino}}</td>            
+            <td>
+              <a href="{% url 'deleta_curso' curso.id %}" class="btn btn-danger">excluir</a> 
+              <a href="{% url 'edita_cursos' curso.id %}" class="btn btn-info">editar</a></td>
+          </tr>    
+        {% endfor %}
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include 'partials/_footer.html' %}
+
+{% endblock%}
